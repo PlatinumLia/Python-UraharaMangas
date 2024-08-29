@@ -1,8 +1,8 @@
 import os
 
-mangás = [{"nome":"Bleach", "volume":"páginas", "em estoque":True},
-          {"nome":"Aku no Hana", "volume":"páginas", "em estoque":True},
-          {"nome":"Black Clover", "volume":"páginas", "em estoque":False}];
+mangás = [{"nome":"Bleach", "volume":"páginas", "ativo":True},
+          {"nome":"Aku no Hana", "volume":"páginas", "ativo":True},
+          {"nome":"Black Clover", "volume":"páginas", "ativo":True}];
 
 def mostra_titulo():
     print("""
@@ -31,9 +31,13 @@ def escolhe_opcao():
 
     def cadastra_manga():
         exibir_subtitulo("Cadastro de novos mangás");
+
         nome_manga = input("Digite o nome do mangá que deseja cadastrar: \n");
-        mangás.append(nome_manga);
+        volume_manga = input(f"Digite quantas páginas têm o mangá ");
+        dados_do_manga = {"nome":nome_manga, "volume":volume_manga, "ativo":True};
+        mangás.append(dados_do_manga);
         print(f"O mangá {nome_manga} foi cadastrado com sucesso\n");
+
         retorna_menu();
         
     def listar_manga():
@@ -44,7 +48,7 @@ def escolhe_opcao():
             em_estoque = mangá["em estoque"];
             print(f"{nome_mangá} | {volume_mangá} | {em_estoque}");
         retorna_menu();
-
+    
     def finalizar_programa():
         os.system("cls");
         print("Finalizando o programa\n");
