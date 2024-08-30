@@ -21,7 +21,7 @@ def mostra_escolhas():
 def escolhe_opcao():
     
     def exibir_subtitulo(texto):
-        os.system("cls");
+        os.system("clear");
         print(texto);
         print("");
         
@@ -33,7 +33,7 @@ def escolhe_opcao():
         exibir_subtitulo("Cadastro de novos mangás");
 
         nome_manga = input("Digite o nome do mangá que deseja cadastrar: \n");
-        volume_manga = input(f"Digite quantas páginas têm o mangá ");
+        volume_manga = input(f"Digite quantas páginas têm o mangá: ");
         dados_do_manga = {"nome":nome_manga, "volume":volume_manga, "ativo":True};
         mangás.append(dados_do_manga);
         print(f"O mangá {nome_manga} foi cadastrado com sucesso\n");
@@ -45,12 +45,27 @@ def escolhe_opcao():
         for mangá in mangás:
             nome_mangá = mangá["nome"];
             volume_mangá = mangá["volume"];
-            em_estoque = mangá["em estoque"];
-            print(f"{nome_mangá} | {volume_mangá} | {em_estoque}");
+            ativo = mangá["ativo"];
+            print(f"{nome_mangá} | {volume_mangá} | {ativo}");
         retorna_menu();
     
+    def ativar_identificacao():
+        exibir_subtitulo("Ativar identificação do mangá");
+        nome_manga = input("Digite o nome do mangá que deseja ativar a identificação: ");
+
+        manga_encontrado = False;
+        for manga in mangás:
+            if  nome_manga == manga["nome"]:
+                manga_encontrado = False;
+                manga["ativo"] = not manga["ativo"];
+                mensagem = f"O mangá {nome_manga} foi ativado com sucesso" if manga["ativo"] else f"O mangá {nome_manga} foi desativado com sucesso";
+                print(mensagem);
+    
+        if not manga_encontrado:
+            print("O mangá não foi encontrado");
+
     def finalizar_programa():
-        os.system("cls");
+        os.system("clear");
         print("Finalizando o programa\n");
     
     def opcao_invalida():
