@@ -1,8 +1,8 @@
 import os
 
-mangás = [{"nome":"Bleach", "volume":"páginas", "ativo":True},
-          {"nome":"Aku no Hana", "volume":"páginas", "ativo":False},
-          {"nome":"Black Clover", "volume":"páginas", "ativo":True}];
+mangas = [{"nome":"Bleach", "volume":"2", "ativo":True},
+          {"nome":"Aku no Hana", "volume":"4", "ativo":False},
+          {"nome":"Black Clover", "volume":"10", "ativo":True}];
 
 def mostra_titulo():
     print("""
@@ -36,19 +36,19 @@ def escolhe_opcao():
         exibir_subtitulo("Cadastro de novos mangás");
 
         nome_manga = input("Digite o nome do mangá que deseja cadastrar: \n");
-        volume_manga = input(f"Digite quantas páginas têm o mangá: ");
+        volume_manga = input(f"Digite quantos volumes têm o mangá: ");
         dados_do_manga = {"nome":nome_manga, "volume":volume_manga, "ativo":True};
-        mangás.append(dados_do_manga);
+        mangas.append(dados_do_manga);
         print(f"O mangá {nome_manga} foi cadastrado com sucesso\n");
 
         retorna_menu();
         
     def listar_manga():
         exibir_subtitulo("Lista de mangás cadastrados\n");
-        for mangá in mangás:
-            nome_mangá = mangá["nome"];
-            volume_mangá = mangá["volume"];
-            ativo = "Ativado" if mangá["ativo"] else "Desativado";
+        for manga in mangas:
+            nome_mangá = manga["nome"];
+            volume_mangá = manga["volume"];
+            ativo = "Ativado" if manga["ativo"] else "Desativado";
             print(f"{nome_mangá.ljust(20)} | {volume_mangá.ljust(20)} | {ativo.ljust(20)}");
             print()
         retorna_menu();
@@ -56,18 +56,17 @@ def escolhe_opcao():
     def ativar_identificacao():
         exibir_subtitulo("Ativar/Desativar identificação do mangá");
         nome_manga = input("Digite o nome do mangá que deseja ativar ou desativar a identificação: ");
-
         manga_encontrado = False;
         
-        for manga in mangás:
+        for manga in mangas:
             if nome_manga == manga["nome"]:
                 manga_encontrado = True;
                 manga["ativo"] = not manga["ativo"];
                 mensagem = f"O mangá {nome_manga} foi ativado com sucesso" if manga["ativo"] else f"O mangá {nome_manga} foi desativado com sucesso";
                 print(mensagem);
 
-            if not manga_encontrado:
-                print("O mangá não foi encontrado");
+        if not manga_encontrado:
+            print("O mangá não foi encontrado");
 
         retorna_menu()
         
